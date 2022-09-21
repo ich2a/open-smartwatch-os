@@ -31,6 +31,7 @@
 #include "./apps/tools/OswAppWebserver.h"
 #endif
 #include "./apps/tools/OswAppCalculator.h"
+#include "./apps/tools/OswAppFlashlight.h"
 #include "./apps/main/stopwatch.h"
 #include "./apps/main/switcher.h"
 #include "./apps/tools/button_test.h"
@@ -189,9 +190,15 @@ void loop() {
         fitnessAppSwitcher.paginationEnable();
         mainAppSwitcher.registerApp(&fitnessAppSwitcher);
         // tools
+
+#if TOOL_FLASHLIGHT == 1
+        mainAppSwitcher.registerApp(new OswAppFlashLight());
+#endif
+
 #if TOOL_CALCULATOR == 1
         mainAppSwitcher.registerApp(new OswAppCalculator());
 #endif
+
 #if TOOL_STOPWATCH == 1
         mainAppSwitcher.registerApp(new OswAppStopWatch());
 #endif
