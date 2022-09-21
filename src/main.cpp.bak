@@ -30,8 +30,8 @@
 #ifdef OSW_FEATURE_WIFI
 #include "./apps/tools/OswAppWebserver.h"
 #endif
-#include "./apps/tools/OswAppCalculator.h"
 #include "./apps/main/stopwatch.h"
+#include "./apps/tools/OswAppCalculator.h"
 #include "./apps/main/switcher.h"
 #include "./apps/tools/button_test.h"
 #ifndef NDEBUG
