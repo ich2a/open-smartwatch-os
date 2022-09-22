@@ -1,3 +1,10 @@
+// AUTOMATICALLY GENERATED FILE. PLEASE DO NOT MODIFY IT MANUALLY
+//
+// PIO Unified Debugger
+//
+// Documentation: https://docs.platformio.org/page/plus/debugging.html
+// Configuration: https://docs.platformio.org/page/projectconf/section_env_debug.html
+
 {
     "version": "0.2.0",
     "configurations": [
@@ -24,6 +31,38 @@
                     "ignoreFailures": true
                 }
             ]
+        },
+        {
+            "type": "platformio-debug",
+            "request": "launch",
+            "name": "PIO Debug",
+            "executable": "f:/Desktop/Projekte/osw/fork-pull/open-smartwatch-os/.pio/build/LIGHT_EDITION_V3_3/firmware.elf",
+            "projectEnvName": "LIGHT_EDITION_V3_3",
+            "toolchainBinDir": "C:/Users/dergr/.platformio/packages/toolchain-xtensa32/bin",
+            "internalConsoleOptions": "openOnSessionStart",
+            "preLaunchTask": {
+                "type": "PlatformIO",
+                "task": "Pre-Debug"
+            }
+        },
+        {
+            "type": "platformio-debug",
+            "request": "launch",
+            "name": "PIO Debug (skip Pre-Debug)",
+            "executable": "f:/Desktop/Projekte/osw/fork-pull/open-smartwatch-os/.pio/build/LIGHT_EDITION_V3_3/firmware.elf",
+            "projectEnvName": "LIGHT_EDITION_V3_3",
+            "toolchainBinDir": "C:/Users/dergr/.platformio/packages/toolchain-xtensa32/bin",
+            "internalConsoleOptions": "openOnSessionStart"
+        },
+        {
+            "type": "platformio-debug",
+            "request": "launch",
+            "name": "PIO Debug (without uploading)",
+            "executable": "f:/Desktop/Projekte/osw/fork-pull/open-smartwatch-os/.pio/build/LIGHT_EDITION_V3_3/firmware.elf",
+            "projectEnvName": "LIGHT_EDITION_V3_3",
+            "toolchainBinDir": "C:/Users/dergr/.platformio/packages/toolchain-xtensa32/bin",
+            "internalConsoleOptions": "openOnSessionStart",
+            "loadMode": "manual"
         }
     ]
 }
