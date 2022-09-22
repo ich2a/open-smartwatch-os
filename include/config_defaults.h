@@ -214,6 +214,9 @@
 #ifndef TOOL_CALCULATOR
 #define TOOL_CALCULATOR 1
 #endif
+#ifndef TOOL_CALCULATOR
+#define TOOL_CALCULATOR 1
+#endif
 #ifndef TOOL_STOPWATCH
 #define TOOL_STOPWATCH 1
 #endif
