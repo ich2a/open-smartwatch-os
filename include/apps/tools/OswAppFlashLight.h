@@ -10,7 +10,7 @@ class OswAppFlashLight : public OswApp {
     OswAppFlashLight(void) {
         ui = OswUI::getInstance();
     };
-    virtual void setup() override; //sets the brightness to the current brightness (else the brighntess would say it was 0 for some reason) 
+    virtual void setup() override; //calls storeBrighntess();
     virtual void loop() override; //checks for button presses and turns the flashlight on/off
     virtual void stop() override; //sets the brightness to the initial value 
     void drawBG(bool on); //draws the app name when the flashlight is turned off and a circle 
