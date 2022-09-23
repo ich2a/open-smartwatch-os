@@ -22,8 +22,8 @@ String op = "+";
 char pNum2 = '+';
 int num2[] = {0, 0, 0, 0, 0, 0};
 double Num2;
-int i = 0;
-int iNum = 0;
+int8_t i = 0;
+uint8_t iNum = 0;
 double result;
 String resultS;
 
