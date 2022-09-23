@@ -82,6 +82,14 @@ void digitalWatchDisplay() {
             hal->gfx()->print(am);
         }
     }
+
+    hal->gfx()->setTextRightAligned();
+    hal->gfx()->setTextCursor(136, 90);
+    hal->gfx()->setTextSize(2);
+
+    //show brightness
+    hal->gfx()->print("%");
+    hal->gfx()->print(int(OswConfigAllKeys::settingDisplayBrightness.get() / 2.55));
 }
 void OswAppWatchfaceFitness::showFitnessTracking() {
     OswHal* hal = OswHal::getInstance();
@@ -139,10 +147,10 @@ void OswAppWatchfaceFitness::setup() {}
 void OswAppWatchfaceFitness::loop() {
     OswHal* hal = OswHal::getInstance();
     if (hal->btnHasGoneDown(BUTTON_3)) {
-        hal->increaseBrightness(25);
+        hal->increaseBrightness(50);
     }
     if (hal->btnHasGoneDown(BUTTON_2)) {
-        hal->decreaseBrightness(25);
+        hal->decreaseBrightness(50);
     }
 
     dateDisplay();
