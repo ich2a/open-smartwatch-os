@@ -14,11 +14,8 @@ uint8_t startBrightness;
 
 void OswAppFlashLight::setup() {
     OswHal* hal = OswHal::getInstance();
-    hal->setBrightness(OswConfigAllKeys::settingDisplayBrightness.get());
+    hal->setBrightness(OswConfigAllKeys::settingDisplayBrightness.get()); //without that, the brightness gets reported as 0
     storeBrightness();
-    Serial.println("setup");
-    Serial.println(OswConfigAllKeys::settingDisplayBrightness.get());
-    
 }
 
 void OswAppFlashLight::loop() {
@@ -40,8 +37,6 @@ void OswAppFlashLight::loop() {
 
 void OswAppFlashLight::storeBrightness(){ //when the app stops, the brigthness gets set to the value it was when the app started 
     startBrightness = OswConfigAllKeys::settingDisplayBrightness.get();
-    Serial.println("store: ");
-    Serial.println(OswConfigAllKeys::settingDisplayBrightness.get());
 
 }
 
@@ -79,7 +74,6 @@ void OswAppFlashLight::brightness(bool on){
         hal->gfx()->print(hal->screenBrightness());
     }
 }
-
 
 
 void OswAppFlashLight::stop() {
