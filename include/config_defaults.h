@@ -198,10 +198,10 @@
  * Apps:
  */
 #ifndef GAME_SNAKE
-#define GAME_SNAKE 0
+#define GAME_SNAKE 1
 #endif
 #ifndef GAME_BRICK_BREAKER
-#define GAME_BRICK_BREAKER 0
+#define GAME_BRICK_BREAKER 1
 #endif
 #ifndef TOOL_FLASHLIGHT
 #define TOOL_FLASHLIGHT 1
@@ -211,6 +211,9 @@
 #endif
 #ifndef TOOL_STOPWATCH
 #define TOOL_STOPWATCH 1
+#endif
+#ifndef TOOL_GET
+#define TOOL_GET 1
 #endif
 #ifndef TOOL_STOPWATCH_BTN_TIMEOUT
 #define TOOL_STOPWATCH_BTN_TIMEOUT 1800

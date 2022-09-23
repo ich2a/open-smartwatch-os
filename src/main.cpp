@@ -33,6 +33,7 @@
 #include "./apps/main/stopwatch.h"
 #include "./apps/tools/OswAppCalculator.h"
 #include "./apps/tools/OswAppFlashLight.h"
+#include "./apps/tools/OswAppGet.h"
 #include "./apps/main/switcher.h"
 #include "./apps/tools/button_test.h"
 #ifndef NDEBUG
@@ -197,9 +198,15 @@ void loop() {
 #if TOOL_CALCULATOR == 1
         mainAppSwitcher.registerApp(new OswAppCalculator());
 #endif
+
+#if TOOL_GET == 1
+        mainAppSwitcher.registerApp(new OswAppGet());
+#endif
+
 #if TOOL_STOPWATCH == 1
         mainAppSwitcher.registerApp(new OswAppStopWatch());
 #endif
+
 #if TOOL_WATERLEVEL == 1
         mainAppSwitcher.registerApp(new OswAppWaterLevel());
 #endif

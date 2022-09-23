@@ -83,11 +83,11 @@ void digitalWatchDisplay() {
         }
     }
 
+    //show brightness
     hal->gfx()->setTextRightAligned();
     hal->gfx()->setTextCursor(136, 90);
     hal->gfx()->setTextSize(2);
 
-    //show brightness
     hal->gfx()->print("%");
     hal->gfx()->print(int(OswConfigAllKeys::settingDisplayBrightness.get() / 2.55));
 }
