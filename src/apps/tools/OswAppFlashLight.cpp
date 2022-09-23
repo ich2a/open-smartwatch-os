@@ -14,8 +14,8 @@ uint8_t startBrightness;
 
 void OswAppFlashLight::setup() {
     OswHal* hal = OswHal::getInstance();
-    hal->setBrightness(OswConfigAllKeys::settingDisplayBrightness.get()); //without that, the brightness gets reported as 0
     storeBrightness();
+    hal->setBrightness(255); //set brightness to the max
 }
 
 void OswAppFlashLight::loop() {
@@ -71,7 +71,7 @@ void OswAppFlashLight::brightness(bool on){
     hal->gfx()->setTextCursor(120, 125);
     hal->gfx()->setTextColor(ui->getBackgroundColor());
     if (on == true){
-        hal->gfx()->print(hal->screenBrightness());
+        hal->gfx()->print(int(hal->screenBrightness() / 2.55));
     }
 }
 
