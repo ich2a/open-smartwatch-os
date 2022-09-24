@@ -401,7 +401,7 @@ void OswAppCalculator::equal(){
 
 
     Num1 = num1[0];
-    for (byte i=1;i<6;i++){
+    for (uint8_t i=1;i<6;i++){
         Num1 = Num1 *10 + num1[i];
     }
 
@@ -430,7 +430,7 @@ void OswAppCalculator::equal(){
         result = Num1 * Num2;
     }else if (op == "/"){
         result = Num1 / Num2;
-    }else if (op == "root"){
+    }else if (op == "square root"){
         result = sqrt(Num2);
     }else if (op == "^"){
         result = pow(Num1, Num2);
