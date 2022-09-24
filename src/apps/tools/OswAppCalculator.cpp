@@ -54,10 +54,8 @@ void OswAppCalculator::loop() {
         clear();
     }
     draw();
-    //Serial.println(iNum);
 
     hal->requestFlush();
-    
 }
 
 void OswAppCalculator::draw(){
@@ -441,11 +439,11 @@ void OswAppCalculator::equal(){
     }else if (op == "random" && iNum == 15){
         result = random(-100000, 100001);
         result = result / 100;
-        resultS = String(result, 2);
         iNum++;
     }
 
-    resultS = String(result, 2);
+    resultS = result;
+
 
     if (hal->btnHasGoneUp(BUTTON_1)){
         iNum++;
