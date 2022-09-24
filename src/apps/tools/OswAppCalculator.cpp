@@ -1,7 +1,7 @@
 /*
     a calculator for addition, subtraction, multiplication, division, square roots, powers, num1 * 10 ^ num2
     with postitive and negativ numebers + generating random numbers
-    press btn2 + btn3 to set the cursor to the first position 
+    press btn2 + btn3 to set the cursor a position back
 */
 
 
@@ -32,8 +32,10 @@ void OswAppCalculator::setup() {}
 void OswAppCalculator::loop() {
     OswHal* hal = OswHal::getInstance();
     
-    if(hal->btnHasGoneDown(BUTTON_2) && hal->btnHasGoneDown(BUTTON_3)){
-        iNum = 16;
+    if(hal->btnHasGoneDown(BUTTON_2) && hal->btnHasGoneDown(BUTTON_3)){ 
+        iNum--; //sets the cursor a position back, if you made a mistake 
+        delay(200); //prevents input while releasing buttons
+        i = 0; //sets the current number to 0, else it would be the number you came from
     }
 
     if(iNum == 0){
@@ -408,7 +410,7 @@ void OswAppCalculator::equal(){
     Num1 = Num1 / 100;
 
     Num2 = num2[0];
-    for (byte i=1;i<6;i++){
+    for (uint8_t i=1;i<6;i++){
         Num2 = Num2 *10 + num2[i];
     }
 
