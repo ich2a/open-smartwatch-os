@@ -410,7 +410,7 @@ void OswAppCalculator::equal(){
     Num1 = Num1 / 100;
 
     Num2 = num2[0];
-    for (byte i=1;i<6;i++){
+    for (uint8_t i=1;i<6;i++){
         Num2 = Num2 *10 + num2[i];
     }
 
