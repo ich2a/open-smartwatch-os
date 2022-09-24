@@ -59,10 +59,10 @@ void OswAppDistStats::setup() {
 void OswAppDistStats::loop() {
     OswHal* hal = OswHal::getInstance();
     if (hal->btnHasGoneDown(BUTTON_3)) {
-        this->cursorPos = this->cursorPos + 1 > 6 ? 6 : this->cursorPos + 1;
+        this->cursorPos = this->cursorPos + 1 > 6 ? 0 : this->cursorPos + 1;
     }
     if (hal->btnHasGoneDown(BUTTON_2)) {
-        this->cursorPos = this->cursorPos - 1 < 0 ? 0 : this->cursorPos - 1;
+        this->cursorPos = this->cursorPos - 1 < 0 ? 6 : this->cursorPos - 1;
     }
 
     showStickChart();
