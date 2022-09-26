@@ -21,11 +21,7 @@ class OswAppCalculator : public OswApp {
     void setNum2(int num2[]); //is used to fill the array that will become num2
     void equal(); //calculates the output 
     void clear(); //clears num1, num2, and the operator, only the result stays 
-
-
     ~OswAppCalculator() {};
-
   private:
     OswUI* ui;
-
 };

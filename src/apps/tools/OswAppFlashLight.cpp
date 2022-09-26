@@ -11,7 +11,6 @@
 bool on = false;
 uint8_t startBrightness;
 
-
 void OswAppFlashLight::setup() {
     OswHal* hal = OswHal::getInstance();
     storeBrightness();
@@ -37,7 +36,6 @@ void OswAppFlashLight::loop() {
 
 void OswAppFlashLight::storeBrightness(){ //when the app stops, the brigthness gets set to the value it was when the app started 
     startBrightness = OswConfigAllKeys::settingDisplayBrightness.get();
-
 }
 
 void OswAppFlashLight::drawBG(bool on){
@@ -54,8 +52,6 @@ void OswAppFlashLight::drawBG(bool on){
         hal->gfx()->setTextColor(ui->getForegroundColor());
         hal->gfx()->print("Flashlight");
     }
-
-    
 }
 
 void OswAppFlashLight::brightness(bool on){
