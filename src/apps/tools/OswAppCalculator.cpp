@@ -4,7 +4,6 @@
     press btn2 + btn3 to set the cursor a position back
 */
 
-
 #include "./apps/tools/OswAppCalculator.h"
 
 #include "config_defaults.h"  // Include the config here again to access the language definitions of it
@@ -64,7 +63,6 @@ void OswAppCalculator::draw(){
     hal->gfx()->setTextSize(4);
     hal->gfx()->setTextLeftAligned();
     hal->gfx()->setTextCursor(19, 70);
-
 
     if(iNum == 0){
         hal->gfx()->setTextSize(3);
@@ -131,9 +129,6 @@ void OswAppCalculator::draw(){
         hal->gfx()->print(num1[5]);
     }
 
-
-
-
     hal->gfx()->setTextCenterAligned();
     hal->gfx()->setTextCursor(125, 102);
     if(iNum == 7){
@@ -148,12 +143,8 @@ void OswAppCalculator::draw(){
         hal->gfx()->setTextSize(4);
     }
 
-
-
-
     hal->gfx()->setTextLeftAligned();
     hal->gfx()->setTextCursor(19, 140);
-
 
      if(iNum == 8){
         hal->gfx()->setTextSize(3);
@@ -225,7 +216,6 @@ void OswAppCalculator::draw(){
     hal->gfx()->setTextColor(ui->getSuccessColor());
     hal->gfx()->print(resultS);
 
-
     hal->gfx()->setTextMiddleAligned();
     hal->gfx()->setTextColor(ui->getForegroundColor());
     hal->gfx()->setTextCursor(214, 57);
@@ -263,7 +253,6 @@ void OswAppCalculator::setPNum1(){
         iNum++;
         i = 0;
     }
-
 }
 
 void OswAppCalculator::setNum1(int num1[]){
@@ -288,7 +277,6 @@ void OswAppCalculator::setNum1(int num1[]){
         iNum++;
         i = 0;
     }
-
 }
 
 void OswAppCalculator::setOP(){
@@ -338,8 +326,6 @@ void OswAppCalculator::setOP(){
         iNum++;
         i = 0;
     }
-
-
 }
 
 void OswAppCalculator::setPNum2(){
@@ -393,12 +379,10 @@ void OswAppCalculator::setNum2(int num2[]){
         iNum++;
         i = 0;
     }
-
 }
 
 void OswAppCalculator::equal(){
     OswHal* hal = OswHal::getInstance();
-
 
     Num1 = num1[0];
     for (uint8_t i=1;i<6;i++){
@@ -444,7 +428,6 @@ void OswAppCalculator::equal(){
 
     resultS = result;
 
-
     if (hal->btnHasGoneUp(BUTTON_1)){
         iNum++;
         i = 0;
@@ -461,7 +444,5 @@ void OswAppCalculator::clear(){
     pNum1 = '+';
     pNum2 = '+';
 }
-
-
 
 void OswAppCalculator::stop() {}
