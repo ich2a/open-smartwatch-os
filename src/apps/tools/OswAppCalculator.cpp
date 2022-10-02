@@ -30,26 +30,26 @@ void OswAppCalculator::setup() {}
 
 void OswAppCalculator::loop() {
     OswHal* hal = OswHal::getInstance();
-    
-    if(hal->btnHasGoneDown(BUTTON_2) && hal->btnHasGoneDown(BUTTON_3)){ 
-        iNum--; //sets the cursor a position back, if you made a mistake 
+
+    if(hal->btnHasGoneDown(BUTTON_2) && hal->btnHasGoneDown(BUTTON_3)) {
+        iNum--; //sets the cursor a position back, if you made a mistake
         delay(200); //prevents input while releasing buttons
         i = 0; //sets the current number to 0, else it would be the number you came from
     }
 
-    if(iNum == 0){
+    if(iNum == 0) {
         setPNum1();
-    }else if (iNum < 7){
+    } else if (iNum < 7) {
         setNum1(num1);
-    }else if(iNum == 7){
+    } else if(iNum == 7) {
         setOP();
-    }else if(iNum == 8){
+    } else if(iNum == 8) {
         setPNum2();
-    }else if (iNum > 8 && iNum < 15){
+    } else if (iNum > 8 && iNum < 15) {
         setNum2(num2);
-    }else if (iNum == 15){
+    } else if (iNum == 15) {
         equal();
-    }else if (iNum > 15){
+    } else if (iNum > 15) {
         clear();
     }
     draw();
@@ -57,20 +57,20 @@ void OswAppCalculator::loop() {
     hal->requestFlush();
 }
 
-void OswAppCalculator::draw(){
+void OswAppCalculator::draw() {
     OswHal* hal = OswHal::getInstance();
 
     hal->gfx()->setTextSize(4);
     hal->gfx()->setTextLeftAligned();
     hal->gfx()->setTextCursor(19, 70);
 
-    if(iNum == 0){
+    if(iNum == 0) {
         hal->gfx()->setTextSize(3);
         hal->gfx()->setTextColor(ui->getSuccessColor());
         hal->gfx()->print(pNum1);
         hal->gfx()->setTextSize(4);
-        
-    }else{
+
+    } else {
         hal->gfx()->setTextSize(3);
         hal->gfx()->setTextColor(ui->getForegroundColor());
         hal->gfx()->print(pNum1);
@@ -78,65 +78,65 @@ void OswAppCalculator::draw(){
 
     }
 
-    if(iNum == 1){
+    if(iNum == 1) {
         hal->gfx()->setTextColor(ui->getSuccessColor());
         hal->gfx()->print(num1[0]);
-        
-    }else{
+
+    } else {
         hal->gfx()->setTextColor(ui->getForegroundColor());
         hal->gfx()->print(num1[0]);
     }
 
-    if(iNum == 2){
+    if(iNum == 2) {
         hal->gfx()->setTextColor(ui->getSuccessColor());
         hal->gfx()->print(num1[1]);
-    }else{
+    } else {
         hal->gfx()->setTextColor(ui->getForegroundColor());
         hal->gfx()->print(num1[1]);
     }
 
-    if(iNum == 3){
+    if(iNum == 3) {
         hal->gfx()->setTextColor(ui->getSuccessColor());
         hal->gfx()->print(num1[2]);
-    }else{
+    } else {
         hal->gfx()->setTextColor(ui->getForegroundColor());
         hal->gfx()->print(num1[2]);
     }
 
-    if(iNum == 4){
+    if(iNum == 4) {
         hal->gfx()->setTextColor(ui->getSuccessColor());
         hal->gfx()->print(num1[3]);
-    }else{
+    } else {
         hal->gfx()->setTextColor(ui->getForegroundColor());
         hal->gfx()->print(num1[3]);
     }
 
-    if(iNum == 5){
+    if(iNum == 5) {
         hal->gfx()->setTextColor(ui->getSuccessColor());
         hal->gfx()->print(".");
         hal->gfx()->print(num1[4]);
-    }else{
+    } else {
         hal->gfx()->setTextColor(ui->getForegroundColor());
         hal->gfx()->print(".");
         hal->gfx()->print(num1[4]);
     }
 
-    if(iNum == 6){
+    if(iNum == 6) {
         hal->gfx()->setTextColor(ui->getSuccessColor());
         hal->gfx()->print(num1[5]);
-    }else{
+    } else {
         hal->gfx()->setTextColor(ui->getForegroundColor());
         hal->gfx()->print(num1[5]);
     }
 
     hal->gfx()->setTextCenterAligned();
     hal->gfx()->setTextCursor(125, 102);
-    if(iNum == 7){
+    if(iNum == 7) {
         hal->gfx()->setTextSize(3);
         hal->gfx()->setTextColor(ui->getSuccessColor());
         hal->gfx()->print(op);
         hal->gfx()->setTextSize(4);
-    }else{
+    } else {
         hal->gfx()->setTextSize(3);
         hal->gfx()->setTextColor(ui->getForegroundColor());
         hal->gfx()->print(op);
@@ -146,64 +146,64 @@ void OswAppCalculator::draw(){
     hal->gfx()->setTextLeftAligned();
     hal->gfx()->setTextCursor(19, 140);
 
-     if(iNum == 8){
+    if(iNum == 8) {
         hal->gfx()->setTextSize(3);
         hal->gfx()->setTextColor(ui->getSuccessColor());
         hal->gfx()->print(pNum2);
         hal->gfx()->setTextSize(4);
-    }else{
+    } else {
         hal->gfx()->setTextSize(3);
         hal->gfx()->setTextColor(ui->getForegroundColor());
         hal->gfx()->print(pNum2);
         hal->gfx()->setTextSize(4);
     }
 
-    if(iNum == 9){
+    if(iNum == 9) {
         hal->gfx()->setTextColor(ui->getSuccessColor());
         hal->gfx()->print(num2[0]);
-    }else{
+    } else {
         hal->gfx()->setTextColor(ui->getForegroundColor());
         hal->gfx()->print(num2[0]);
     }
 
-    if(iNum == 10){
+    if(iNum == 10) {
         hal->gfx()->setTextColor(ui->getSuccessColor());
         hal->gfx()->print(num2[1]);
-    }else{
+    } else {
         hal->gfx()->setTextColor(ui->getForegroundColor());
         hal->gfx()->print(num2[1]);
     }
 
-    if(iNum == 11){
+    if(iNum == 11) {
         hal->gfx()->setTextColor(ui->getSuccessColor());
         hal->gfx()->print(num2[2]);
-    }else{
+    } else {
         hal->gfx()->setTextColor(ui->getForegroundColor());
         hal->gfx()->print(num2[2]);
     }
 
-    if(iNum == 12){
+    if(iNum == 12) {
         hal->gfx()->setTextColor(ui->getSuccessColor());
         hal->gfx()->print(num2[3]);
-    }else{
+    } else {
         hal->gfx()->setTextColor(ui->getForegroundColor());
         hal->gfx()->print(num2[3]);
     }
 
-    if(iNum == 13){
+    if(iNum == 13) {
         hal->gfx()->setTextColor(ui->getSuccessColor());
         hal->gfx()->print(".");
         hal->gfx()->print(num2[4]);
-    }else{
+    } else {
         hal->gfx()->setTextColor(ui->getForegroundColor());
         hal->gfx()->print(".");
         hal->gfx()->print(num2[4]);
     }
 
-    if(iNum == 14){
+    if(iNum == 14) {
         hal->gfx()->setTextColor(ui->getSuccessColor());
         hal->gfx()->print(num2[5]);
-    }else{
+    } else {
         hal->gfx()->setTextColor(ui->getForegroundColor());
         hal->gfx()->print(num2[5]);
     }
@@ -219,208 +219,208 @@ void OswAppCalculator::draw(){
     hal->gfx()->setTextMiddleAligned();
     hal->gfx()->setTextColor(ui->getForegroundColor());
     hal->gfx()->setTextCursor(214, 57);
-    hal->gfx()->print("+"); 
+    hal->gfx()->print("+");
     hal->gfx()->setTextCursor(214, 184);
     hal->gfx()->print("-");
     hal->gfx()->setTextCursor(31, 184);
-    hal->gfx()->print(">"); 
+    hal->gfx()->print(">");
 }
 
 
-void OswAppCalculator::setPNum1(){
+void OswAppCalculator::setPNum1() {
     OswHal* hal = OswHal::getInstance();
 
-    if (hal->btnHasGoneUp(BUTTON_3)){
+    if (hal->btnHasGoneUp(BUTTON_3)) {
         i++;
     }
-    if (hal->btnHasGoneUp(BUTTON_2)){
+    if (hal->btnHasGoneUp(BUTTON_2)) {
         i--;
     }
-    if (i < 0){
+    if (i < 0) {
         i = 1;
     }
-    if (i > 1){
+    if (i > 1) {
         i = 0;
     }
 
-    if (i == 0){
+    if (i == 0) {
         pNum1 = '+';
-    }else if (i == 1){
+    } else if (i == 1) {
         pNum1 = '-';
     }
 
-    if (hal->btnHasGoneUp(BUTTON_1)){
+    if (hal->btnHasGoneUp(BUTTON_1)) {
         iNum++;
         i = 0;
     }
 }
 
-void OswAppCalculator::setNum1(int num1[]){
+void OswAppCalculator::setNum1(int num1[]) {
     OswHal* hal = OswHal::getInstance();
 
-    if (hal->btnHasGoneUp(BUTTON_3)){
+    if (hal->btnHasGoneUp(BUTTON_3)) {
         i++;
     }
-    if (hal->btnHasGoneUp(BUTTON_2)){
+    if (hal->btnHasGoneUp(BUTTON_2)) {
         i--;
     }
-    if (i < 0){
+    if (i < 0) {
         i = 9;
     }
-    if (i > 9){
+    if (i > 9) {
         i = 0;
     }
 
     num1[iNum-1] = i;
 
-    if (hal->btnHasGoneUp(BUTTON_1)){
+    if (hal->btnHasGoneUp(BUTTON_1)) {
         iNum++;
         i = 0;
     }
 }
 
-void OswAppCalculator::setOP(){
+void OswAppCalculator::setOP() {
     OswHal* hal = OswHal::getInstance();
 
-    if (hal->btnHasGoneUp(BUTTON_3)){
+    if (hal->btnHasGoneUp(BUTTON_3)) {
         i++;
     }
-    if (hal->btnHasGoneUp(BUTTON_2)){
+    if (hal->btnHasGoneUp(BUTTON_2)) {
         i--;
     }
-    if (i < 0){
+    if (i < 0) {
         i = 7;
     }
-    if (i > 7){
+    if (i > 7) {
         i = 0;
     }
 
-    switch(i){
-        case 0:
-            op = "+";
-            break;
-        case 1:
-            op = "-";
-            break;
-        case 2:
-            op = "*";
-            break;
-        case 3:
-            op = "/";
-            break;
-        case 4:
-            op = "square root";
-            break;
-        case 5:
-            op = "^";
-            break;
-        case 6:
-            op = "x10^";
-            break;
-        case 7:
-            op = "random";
-            break;
+    switch(i) {
+    case 0:
+        op = "+";
+        break;
+    case 1:
+        op = "-";
+        break;
+    case 2:
+        op = "*";
+        break;
+    case 3:
+        op = "/";
+        break;
+    case 4:
+        op = "square root";
+        break;
+    case 5:
+        op = "^";
+        break;
+    case 6:
+        op = "x10^";
+        break;
+    case 7:
+        op = "random";
+        break;
     }
 
-    if (hal->btnHasGoneUp(BUTTON_1)){
+    if (hal->btnHasGoneUp(BUTTON_1)) {
         iNum++;
         i = 0;
     }
 }
 
-void OswAppCalculator::setPNum2(){
+void OswAppCalculator::setPNum2() {
     OswHal* hal = OswHal::getInstance();
 
-    if (hal->btnHasGoneUp(BUTTON_3)){
+    if (hal->btnHasGoneUp(BUTTON_3)) {
         i++;
     }
-    if (hal->btnHasGoneUp(BUTTON_2)){
+    if (hal->btnHasGoneUp(BUTTON_2)) {
         i--;
     }
-    if (i < 0){
+    if (i < 0) {
         i = 1;
     }
-    if (i > 1){
+    if (i > 1) {
         i = 0;
     }
 
-    if (i == 0){
+    if (i == 0) {
         pNum2 = '+';
-    }else if (i == 1){
+    } else if (i == 1) {
         pNum2 = '-';
     }
 
-    if (hal->btnHasGoneUp(BUTTON_1)){
+    if (hal->btnHasGoneUp(BUTTON_1)) {
         iNum++;
         i = 0;
     }
 
 }
 
-void OswAppCalculator::setNum2(int num2[]){
+void OswAppCalculator::setNum2(int num2[]) {
     OswHal* hal = OswHal::getInstance();
 
-    if (hal->btnHasGoneUp(BUTTON_3)){
+    if (hal->btnHasGoneUp(BUTTON_3)) {
         i++;
     }
-    if (hal->btnHasGoneUp(BUTTON_2)){
+    if (hal->btnHasGoneUp(BUTTON_2)) {
         i--;
     }
-    if (i < 0){
+    if (i < 0) {
         i = 9;
     }
-    if (i > 9){
+    if (i > 9) {
         i = 0;
     }
 
     num2[iNum-9] = i;
 
-    if (hal->btnHasGoneUp(BUTTON_1)){
+    if (hal->btnHasGoneUp(BUTTON_1)) {
         iNum++;
         i = 0;
     }
 }
 
-void OswAppCalculator::equal(){
+void OswAppCalculator::equal() {
     OswHal* hal = OswHal::getInstance();
 
     Num1 = num1[0];
-    for (uint8_t i=1;i<6;i++){
+    for (uint8_t i=1; i<6; i++) {
         Num1 = Num1 *10 + num1[i];
     }
 
     Num1 = Num1 / 100;
 
     Num2 = num2[0];
-    for (uint8_t i=1;i<6;i++){
+    for (uint8_t i=1; i<6; i++) {
         Num2 = Num2 *10 + num2[i];
     }
 
     Num2 = Num2 / 100;
 
-    if (pNum1 == '-'){
+    if (pNum1 == '-') {
         Num1 = 0 - Num1;
     }
 
-    if (pNum2 == '-'){
+    if (pNum2 == '-') {
         Num2 = 0 - Num2;
     }
 
-    if (op == "+"){
+    if (op == "+") {
         result = Num1 + Num2;
-    }else if (op == "-"){
+    } else if (op == "-") {
         result = Num1 - Num2;
-    }else if (op == "*"){
+    } else if (op == "*") {
         result = Num1 * Num2;
-    }else if (op == "/"){
+    } else if (op == "/") {
         result = Num1 / Num2;
-    }else if (op == "square root"){
+    } else if (op == "square root") {
         result = sqrt(Num2);
-    }else if (op == "^"){
+    } else if (op == "^") {
         result = pow(Num1, Num2);
-    }else if (op == "x10^"){
+    } else if (op == "x10^") {
         result = pow(10, Num2) * Num1;
-    }else if (op == "random" && iNum == 15){
+    } else if (op == "random" && iNum == 15) {
         result = random(-100000, 100001);
         result = result / 100;
         iNum++;
@@ -428,14 +428,14 @@ void OswAppCalculator::equal(){
 
     resultS = result;
 
-    if (hal->btnHasGoneUp(BUTTON_1)){
+    if (hal->btnHasGoneUp(BUTTON_1)) {
         iNum++;
         i = 0;
     }
-} 
+}
 
 
-void OswAppCalculator::clear(){
+void OswAppCalculator::clear() {
     i = 0;
     iNum = 0;
     memset(num1,0,sizeof(num1));

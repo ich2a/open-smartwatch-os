@@ -20,10 +20,10 @@ void OswAppFlashLight::setup() {
 void OswAppFlashLight::loop() {
     OswHal* hal = OswHal::getInstance();
 
-    if(hal->btnHasGoneUp(BUTTON_1)){
-        if (on == true){
+    if(hal->btnHasGoneUp(BUTTON_1)) {
+        if (on == true) {
             on = false;
-        }else {
+        } else {
             on = true;
         }
     }
@@ -31,20 +31,20 @@ void OswAppFlashLight::loop() {
     brightness(on);
 
     hal->requestFlush();
-    
+
 }
 
-void OswAppFlashLight::storeBrightness(){ //when the app stops, the brigthness gets set to the value it was when the app started 
+void OswAppFlashLight::storeBrightness() { //when the app stops, the brigthness gets set to the value it was when the app started
     startBrightness = OswConfigAllKeys::settingDisplayBrightness.get();
 }
 
-void OswAppFlashLight::drawBG(bool on){
+void OswAppFlashLight::drawBG(bool on) {
     OswHal* hal = OswHal::getInstance();
 
     hal->gfx()->fillCircle(120, 120, 120, ui->getSuccessColor());
-    if (on == true){
+    if (on == true) {
         hal->gfx()->fillCircle(120, 120, 115, ui->getForegroundColor());
-    }else{
+    } else {
         hal->gfx()->fillCircle(120, 120, 115, ui->getBackgroundColor());
         hal->gfx()->setTextSize(3.5);
         hal->gfx()->setTextCenterAligned();
@@ -54,7 +54,7 @@ void OswAppFlashLight::drawBG(bool on){
     }
 }
 
-void OswAppFlashLight::brightness(bool on){
+void OswAppFlashLight::brightness(bool on) {
     OswHal* hal = OswHal::getInstance();
     if (hal->btnHasGoneDown(BUTTON_3)) {
         hal->increaseBrightness(50);
@@ -66,7 +66,7 @@ void OswAppFlashLight::brightness(bool on){
     hal->gfx()->setTextCenterAligned();
     hal->gfx()->setTextCursor(120, 125);
     hal->gfx()->setTextColor(ui->getBackgroundColor());
-    if (on == true){
+    if (on == true) {
         hal->gfx()->print(int(hal->screenBrightness() / 2.55));
     }
 }

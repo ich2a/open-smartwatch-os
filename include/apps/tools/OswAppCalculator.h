@@ -10,7 +10,7 @@ class OswAppCalculator : public OswApp {
     OswAppCalculator(void) {
         ui = OswUI::getInstance();
     };
-    virtual void setup() override; 
+    virtual void setup() override;
     virtual void loop() override; //checks the cursor position (iNum) and starts the appropriate function
     virtual void stop() override;
     void draw(); //draws the ui
@@ -19,8 +19,8 @@ class OswAppCalculator : public OswApp {
     void setOP(); //gets the input to set the operator
     void setPNum2(); //gets the input that tells if num2 is positive or negative
     void setNum2(int num2[]); //is used to fill the array that will become num2
-    void equal(); //calculates the output 
-    void clear(); //clears num1, num2, and the operator, only the result stays 
+    void equal(); //calculates the output
+    void clear(); //clears num1, num2, and the operator, only the result stays
     ~OswAppCalculator() {};
   private:
     OswUI* ui;
