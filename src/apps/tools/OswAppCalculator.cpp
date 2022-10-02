@@ -22,7 +22,7 @@ char signOfNum2 = '+';
 int num2[] = {0, 0, 0, 0, 0, 0};
 double Num2;
 int8_t position = 0;
-uint8_t iNum = 0; //cursor position 
+uint8_t iNum = 0; //cursor position
 double result;
 String resultToString;
 
