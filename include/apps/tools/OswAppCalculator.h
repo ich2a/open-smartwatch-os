@@ -17,11 +17,11 @@ class OswAppCalculator : public OswApp {
   private:
     OswUI* ui;
     void draw(); //draws the ui
-    void setPNum1(); //gets the input that tells if num1 is positive or negative
+    void setSignOfNum1(); //gets the input that tells if num1 is positive or negative
     void setNum1(int num1[]); //is used to fill the array that will become num1
-    void setOP(); //gets the input to set the operator
-    void setPNum2(); //gets the input that tells if num2 is positive or negative
+    void setOerator(); //gets the input to set the operator
+    void setSignOfNum2(); //gets the input that tells if num2 is positive or negative
     void setNum2(int num2[]); //is used to fill the array that will become num2
-    void equal(); //calculates the output
+    void calculate(); //calculates the output
     void clear(); //clears num1, num2, and the operator, only the result stays
 };

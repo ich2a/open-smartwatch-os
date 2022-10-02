@@ -14,17 +14,17 @@
 
 #include <osw_config_keys.h>
 
-char pNum1 = '+';
+char signOfNum1 = '+';
 int num1[] = {0, 0, 0, 0, 0, 0};
 double Num1;
-String op = "+";
-char pNum2 = '+';
+String mathOperation = "+";
+char signOfNum2 = '+';
 int num2[] = {0, 0, 0, 0, 0, 0};
 double Num2;
-int8_t i = 0;
-uint8_t iNum = 0;
+int8_t position = 0;
+uint8_t iNum = 0; //cursor position 
 double result;
-String resultS;
+String resultToString;
 
 void OswAppCalculator::setup() {}
 
@@ -34,21 +34,21 @@ void OswAppCalculator::loop() {
     if(hal->btnHasGoneDown(BUTTON_2) && hal->btnHasGoneDown(BUTTON_3)) {
         iNum--; //sets the cursor a position back, if you made a mistake
         delay(200); //prevents input while releasing buttons
-        i = 0; //sets the current number to 0, else it would be the number you came from
+        position = 0; //sets the current number to 0, else it would be the number you came from
     }
 
     if(iNum == 0) {
-        setPNum1();
+        setSignOfNum1();
     } else if (iNum < 7) {
         setNum1(num1);
     } else if(iNum == 7) {
-        setOP();
+        setOerator();
     } else if(iNum == 8) {
-        setPNum2();
+        setSignOfNum2();
     } else if (iNum > 8 && iNum < 15) {
         setNum2(num2);
     } else if (iNum == 15) {
-        equal();
+        calculate();
     } else if (iNum > 15) {
         clear();
     }
@@ -67,13 +67,13 @@ void OswAppCalculator::draw() {
     if(iNum == 0) {
         hal->gfx()->setTextSize(3);
         hal->gfx()->setTextColor(ui->getSuccessColor());
-        hal->gfx()->print(pNum1);
+        hal->gfx()->print(signOfNum1);
         hal->gfx()->setTextSize(4);
 
     } else {
         hal->gfx()->setTextSize(3);
         hal->gfx()->setTextColor(ui->getForegroundColor());
-        hal->gfx()->print(pNum1);
+        hal->gfx()->print(signOfNum1);
         hal->gfx()->setTextSize(4);
 
     }
@@ -134,12 +134,12 @@ void OswAppCalculator::draw() {
     if(iNum == 7) {
         hal->gfx()->setTextSize(3);
         hal->gfx()->setTextColor(ui->getSuccessColor());
-        hal->gfx()->print(op);
+        hal->gfx()->print(mathOperation);
         hal->gfx()->setTextSize(4);
     } else {
         hal->gfx()->setTextSize(3);
         hal->gfx()->setTextColor(ui->getForegroundColor());
-        hal->gfx()->print(op);
+        hal->gfx()->print(mathOperation);
         hal->gfx()->setTextSize(4);
     }
 
@@ -149,12 +149,12 @@ void OswAppCalculator::draw() {
     if(iNum == 8) {
         hal->gfx()->setTextSize(3);
         hal->gfx()->setTextColor(ui->getSuccessColor());
-        hal->gfx()->print(pNum2);
+        hal->gfx()->print(signOfNum2);
         hal->gfx()->setTextSize(4);
     } else {
         hal->gfx()->setTextSize(3);
         hal->gfx()->setTextColor(ui->getForegroundColor());
-        hal->gfx()->print(pNum2);
+        hal->gfx()->print(signOfNum2);
         hal->gfx()->setTextSize(4);
     }
 
@@ -214,7 +214,7 @@ void OswAppCalculator::draw() {
     hal->gfx()->setTextSize(3);
     hal->gfx()->setTextCursor(120, 210);
     hal->gfx()->setTextColor(ui->getSuccessColor());
-    hal->gfx()->print(resultS);
+    hal->gfx()->print(resultToString);
 
     hal->gfx()->setTextMiddleAligned();
     hal->gfx()->setTextColor(ui->getForegroundColor());
@@ -227,31 +227,31 @@ void OswAppCalculator::draw() {
 }
 
 
-void OswAppCalculator::setPNum1() {
+void OswAppCalculator::setSignOfNum1() {
     OswHal* hal = OswHal::getInstance();
 
     if (hal->btnHasGoneUp(BUTTON_3)) {
-        i++;
+        position++;
     }
     if (hal->btnHasGoneUp(BUTTON_2)) {
-        i--;
+        position--;
     }
-    if (i < 0) {
-        i = 1;
+    if (position < 0) {
+        position = 1;
     }
-    if (i > 1) {
-        i = 0;
+    if (position > 1) {
+        position = 0;
     }
 
-    if (i == 0) {
-        pNum1 = '+';
-    } else if (i == 1) {
-        pNum1 = '-';
+    if (position == 0) {
+        signOfNum1 = '+';
+    } else if (position == 1) {
+        signOfNum1 = '-';
     }
 
     if (hal->btnHasGoneUp(BUTTON_1)) {
         iNum++;
-        i = 0;
+        position = 0;
     }
 }
 
@@ -259,100 +259,100 @@ void OswAppCalculator::setNum1(int num1[]) {
     OswHal* hal = OswHal::getInstance();
 
     if (hal->btnHasGoneUp(BUTTON_3)) {
-        i++;
+        position++;
     }
     if (hal->btnHasGoneUp(BUTTON_2)) {
-        i--;
+        position--;
     }
-    if (i < 0) {
-        i = 9;
+    if (position < 0) {
+        position = 9;
     }
-    if (i > 9) {
-        i = 0;
+    if (position > 9) {
+        position = 0;
     }
 
-    num1[iNum-1] = i;
+    num1[iNum-1] = position;
 
     if (hal->btnHasGoneUp(BUTTON_1)) {
         iNum++;
-        i = 0;
+        position = 0;
     }
 }
 
-void OswAppCalculator::setOP() {
+void OswAppCalculator::setOerator() {
     OswHal* hal = OswHal::getInstance();
 
     if (hal->btnHasGoneUp(BUTTON_3)) {
-        i++;
+        position++;
     }
     if (hal->btnHasGoneUp(BUTTON_2)) {
-        i--;
+        position--;
     }
-    if (i < 0) {
-        i = 7;
+    if (position < 0) {
+        position = 7;
     }
-    if (i > 7) {
-        i = 0;
+    if (position > 7) {
+        position = 0;
     }
 
-    switch(i) {
+    switch(position) {
     case 0:
-        op = "+";
+        mathOperation = "+";
         break;
     case 1:
-        op = "-";
+        mathOperation = "-";
         break;
     case 2:
-        op = "*";
+        mathOperation = "*";
         break;
     case 3:
-        op = "/";
+        mathOperation = "/";
         break;
     case 4:
-        op = "square root";
+        mathOperation = "square root";
         break;
     case 5:
-        op = "^";
+        mathOperation = "^";
         break;
     case 6:
-        op = "x10^";
+        mathOperation = "x10^";
         break;
     case 7:
-        op = "random";
+        mathOperation = "random";
         break;
     }
 
     if (hal->btnHasGoneUp(BUTTON_1)) {
         iNum++;
-        i = 0;
+        position = 0;
     }
 }
 
-void OswAppCalculator::setPNum2() {
+void OswAppCalculator::setSignOfNum2() {
     OswHal* hal = OswHal::getInstance();
 
     if (hal->btnHasGoneUp(BUTTON_3)) {
-        i++;
+        position++;
     }
     if (hal->btnHasGoneUp(BUTTON_2)) {
-        i--;
+        position--;
     }
-    if (i < 0) {
-        i = 1;
+    if (position < 0) {
+        position = 1;
     }
-    if (i > 1) {
-        i = 0;
+    if (position > 1) {
+        position = 0;
     }
 
-    if (i == 0) {
-        pNum2 = '+';
-    } else if (i == 1) {
-        pNum2 = '-';
+    if (position == 0) {
+        signOfNum2 = '+';
+    } else if (position == 1) {
+        signOfNum2 = '-';
     }
 
     if (hal->btnHasGoneUp(BUTTON_1)) {
         iNum++;
-        i = 0;
+        position = 0;
     }
 
 }
@@ -361,27 +361,28 @@ void OswAppCalculator::setNum2(int num2[]) {
     OswHal* hal = OswHal::getInstance();
 
     if (hal->btnHasGoneUp(BUTTON_3)) {
-        i++;
+        position++;
+        position++;
     }
     if (hal->btnHasGoneUp(BUTTON_2)) {
-        i--;
+        position--;
     }
-    if (i < 0) {
-        i = 9;
+    if (position < 0) {
+        position = 9;
     }
-    if (i > 9) {
-        i = 0;
+    if (position > 9) {
+        position = 0;
     }
 
-    num2[iNum-9] = i;
+    num2[iNum-9] = position;
 
     if (hal->btnHasGoneUp(BUTTON_1)) {
         iNum++;
-        i = 0;
+        position = 0;
     }
 }
 
-void OswAppCalculator::equal() {
+void OswAppCalculator::calculate() {
     OswHal* hal = OswHal::getInstance();
 
     Num1 = num1[0];
@@ -398,51 +399,51 @@ void OswAppCalculator::equal() {
 
     Num2 = Num2 / 100;
 
-    if (pNum1 == '-') {
+    if (signOfNum1 == '-') {
         Num1 = 0 - Num1;
     }
 
-    if (pNum2 == '-') {
+    if (signOfNum2 == '-') {
         Num2 = 0 - Num2;
     }
 
-    if (op == "+") {
+    if (mathOperation == "+") {
         result = Num1 + Num2;
-    } else if (op == "-") {
+    } else if (mathOperation == "-") {
         result = Num1 - Num2;
-    } else if (op == "*") {
+    } else if (mathOperation == "*") {
         result = Num1 * Num2;
-    } else if (op == "/") {
+    } else if (mathOperation == "/") {
         result = Num1 / Num2;
-    } else if (op == "square root") {
+    } else if (mathOperation == "square root") {
         result = sqrt(Num2);
-    } else if (op == "^") {
+    } else if (mathOperation == "^") {
         result = pow(Num1, Num2);
-    } else if (op == "x10^") {
+    } else if (mathOperation == "x10^") {
         result = pow(10, Num2) * Num1;
-    } else if (op == "random" && iNum == 15) {
+    } else if (mathOperation == "random" && iNum == 15) {
         result = random(-100000, 100001);
         result = result / 100;
         iNum++;
     }
 
-    resultS = result;
+    resultToString = result;
 
     if (hal->btnHasGoneUp(BUTTON_1)) {
         iNum++;
-        i = 0;
+        position = 0;
     }
 }
 
 
 void OswAppCalculator::clear() {
-    i = 0;
+    position = 0;
     iNum = 0;
     memset(num1,0,sizeof(num1));
     memset(num2,0,sizeof(num2));
-    op = "+";
-    pNum1 = '+';
-    pNum2 = '+';
+    mathOperation = "+";
+    signOfNum1 = '+';
+    signOfNum2 = '+';
 }
 
 void OswAppCalculator::stop() {}
