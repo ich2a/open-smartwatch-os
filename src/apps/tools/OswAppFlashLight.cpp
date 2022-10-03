@@ -8,7 +8,6 @@
 
 #include <osw_config_keys.h>
 
-bool on = false;
 uint8_t startBrightness;
 
 void OswAppFlashLight::setup() {
@@ -19,6 +18,8 @@ void OswAppFlashLight::setup() {
 
 void OswAppFlashLight::loop() {
     OswHal* hal = OswHal::getInstance();
+
+    static bool on = false;
 
     if(hal->btnHasGoneUp(BUTTON_1)) {
         if (on == true) {
