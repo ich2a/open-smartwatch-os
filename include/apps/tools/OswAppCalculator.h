@@ -11,7 +11,7 @@ class OswAppCalculator : public OswApp {
         ui = OswUI::getInstance();
     };
     virtual void setup() override;
-    virtual void loop() override; //checks the cursor position (iNum) and starts the appropriate function, handles button input and the cursor (position) 
+    virtual void loop() override; //checks the cursor position (iNum) and starts the appropriate function, handles button input and the cursor (position)
     virtual void stop() override;
     ~OswAppCalculator() {};
   private:
