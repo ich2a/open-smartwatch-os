@@ -47,7 +47,7 @@ OswConfigKeyShort settingDisplayTimeout("s2", "Display", "Display Timeout",
 OswConfigKeyBool settingDisplayOverlays("s3", "Display", "Display Overlays", "Show overlays at all", DISPLAY_OVERLAYS);
 OswConfigKeyBool settingDisplayOverlaysOnWatchScreen("s4", "Display", "Display Watchface Overlays", nullptr, DISPLAY_OVERLAYS_ON_WF);
 OswConfigKeyDropDown settingDisplayDefaultWatchface("n", "Display",
-        "Default Watchface ID (analog, digital, mix, Dual-time, Fitness-tracking, binary, monotimer)", "0,1,2,3,4,5,6", String(CONFIG_DEFAULT_WATCHFACE_INDEX));
+        "Default Watchface ID (analog, digital, mix, Dual-time, Fitness-tracking, binary, monotimer, numerals)", "0,1,2,3,4,5,6,7", String(CONFIG_DEFAULT_WATCHFACE_INDEX));
 OswConfigKeyBool settingDisplayDualHourTick("h2", "Display", "Display Dual-Time Hour Tick", "Show dual time hour tick", false);
 #if OSW_PLATFORM_ENVIRONMENT_ACCELEROMETER == 1
 OswConfigKeyBool settingDisplayStepsGoal("g1", "Display", "Display Steps Goal", "Show goal steps", true);
@@ -91,8 +91,8 @@ OswConfigKeyShort resetDay("r", "Date & Time", "Day of the week",
 OswConfigKeyShort configHeight("f4", "Fitness", "User Height", "E.g 175.7 cm -> 175 (Rounds off)", 175);
 OswConfigKeyShort configWeight("f5", "Fitness", "User Weight", "E.g 70.3 kg -> 70 (Rounds off)", 70);
 OswConfigKeyInt stepsPerDay("f1", "Fitness", "Steps per day", "> 0!", STEPS_PER_DAY);
-OswConfigKeyInt distPerDay("f2", "Fitness", "Distance per day", "> 0!", STEPS_PER_DAY);
-OswConfigKeyInt kcalPerDay("f3", "Fitness", "kcalorie per day", "> 0!", STEPS_PER_DAY);
+OswConfigKeyInt distPerDay("f2", "Fitness", "Distance per day", "> 0!", DIST_PER_DAY);
+OswConfigKeyInt kcalPerDay("f3", "Fitness", "kcalorie per day", "> 0!", KCAL_PER_DAY);
 OswConfigKeyBool stepsHistoryClear("o", "Fitness", "Clear historical days", "In case the watch did not run for multiple days, these will be cleared. Can make problems if time is lost during sleep.", STEPS_HISTORY_CLEAR);
 #endif
 }  // namespace OswConfigAllKeys
