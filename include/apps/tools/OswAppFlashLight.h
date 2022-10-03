@@ -16,6 +16,6 @@ class OswAppFlashLight : public OswApp {
     virtual void setup() override; 
     virtual void loop() override; //checks for button presses and turns the flashlight on/off
     virtual void stop() override;
-    void draw(bool on); 
+    void draw(short flashlightBrightness, bool on); 
 
 };
