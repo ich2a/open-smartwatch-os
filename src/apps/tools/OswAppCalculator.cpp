@@ -6,7 +6,7 @@
 
 #include "./apps/tools/OswAppCalculator.h"
 
-#include "config_defaults.h"  
+#include "config_defaults.h"
 #include "gfx_util.h"
 #include "osw_app.h"
 #include "osw_hal.h"
@@ -31,46 +31,46 @@ void OswAppCalculator::loop() {
     static char signOfNum2 = '+';
 
 
-    //handle button input 
+    //handle button input
     if(hal->btnHasGoneDown(BUTTON_2) && hal->btnHasGoneDown(BUTTON_3)) {
         iNum--; //sets the cursor a position back, if you made a mistake
         delay(500); //prevents input while releasing buttons
         position = 0; //resetes the previous number to 0
-    }else if(hal->btnHasGoneUp(BUTTON_1)){
+    } else if(hal->btnHasGoneUp(BUTTON_1)) {
         iNum++;
         position = 0;
-    }else if (hal->btnHasGoneUp(BUTTON_3)) {
+    } else if (hal->btnHasGoneUp(BUTTON_3)) {
         position++;
-    }else if (hal->btnHasGoneUp(BUTTON_2)) {
+    } else if (hal->btnHasGoneUp(BUTTON_2)) {
         position--;
     }
 
     //calls the functions and controlls the cursor (position)
     if(iNum == 0) { //sets sign of num1
         signOfNum1 = setSign(position, iNum, signOfNum1, signOfNum2);
-        position = (position > 1) ? 0 : position; 
+        position = (position > 1) ? 0 : position;
         position = (position < 0) ? 1 : position;
     } else if (iNum < 7) { //sets num1
-        position = (position > 9) ? 0 : position; 
+        position = (position > 9) ? 0 : position;
         position = (position < 0) ? 9 : position;
         setNum(position, iNum);
     } else if(iNum == 7) { //sets the operator
         mathOperation = setOperator(position);
-        position = (position < 0) ? 7 : position; 
+        position = (position < 0) ? 7 : position;
         position = (position > 8) ? 0 : position;
     } else if(iNum == 8) { //sets sign of num2
-        iNum = ((mathOperation == "square root") || (mathOperation == "random")) ? 15 : 8; //skips to the end because no further input is requierd 
+        iNum = ((mathOperation == "square root") || (mathOperation == "random")) ? 15 : 8; //skips to the end because no further input is requierd
         signOfNum2 = setSign(position, iNum, signOfNum1, signOfNum2);
         position = (position > 1) ? 0 : position;
         position = (position < 0) ? 1 : position;
     } else if (iNum > 8 && iNum < 15) { //sets num2
-        position = (position > 9) ? 0 : position; 
+        position = (position > 9) ? 0 : position;
         position = (position < 0) ? 9 : position;
         setNum(position, iNum);
-    } else if (iNum == 15) { //calculates the result 
+    } else if (iNum == 15) { //calculates the result
         resultToString = calculate(iNum, signOfNum1, mathOperation, signOfNum2);
         iNum++;
-    } else if (iNum > 15){ //resets num1, num2 and the operator. The result stays 
+    } else if (iNum > 15) { //resets num1, num2 and the operator. The result stays
         memset(num1,0,sizeof(num1));
         memset(num2,0,sizeof(num2));
         mathOperation = "+";
@@ -85,7 +85,7 @@ void OswAppCalculator::loop() {
 
 
 char OswAppCalculator::setSign(int8_t position, uint8_t iNum, char signOfNum1, char signOfNum2) {
-  
+
     if (position < 0) {
         position = 1;
     }
@@ -94,15 +94,15 @@ char OswAppCalculator::setSign(int8_t position, uint8_t iNum, char signOfNum1, c
     }
 
     if (position == 0) {
-        if(iNum == 0){
+        if(iNum == 0) {
             signOfNum1 = '+';
-        }else if(iNum == 8){
+        } else if(iNum == 8) {
             signOfNum1 = '+';
         }
     } else if (position == 1) {
-        if(iNum == 0){
+        if(iNum == 0) {
             signOfNum1 = '-';
-        }else if(iNum == 8){
+        } else if(iNum == 8) {
             signOfNum1 = '-';
         }
     }
@@ -112,9 +112,9 @@ char OswAppCalculator::setSign(int8_t position, uint8_t iNum, char signOfNum1, c
 
 void OswAppCalculator::setNum(int8_t position, uint8_t iNum) {
 
-    if(iNum < 7){
+    if(iNum < 7) {
         num1[iNum-1] = position;
-    }else if(iNum > 6){
+    } else if(iNum > 6) {
         num2[iNum-9] = position;
     }
 }
@@ -208,7 +208,7 @@ String OswAppCalculator::calculate(int iNum, char signOfNum1, String mathOperati
     String resultToString = String(result);
 
     return resultToString;
-    
+
 }
 
 void OswAppCalculator::draw(int iNum, char signOfNum1, String mathOperation, char signOfNum2, String resultToString) {
