@@ -14,7 +14,7 @@ void OswAppFlashLight::loop() {
     OswHal* hal = OswHal::getInstance();
 
     static bool on = false;
-    static short flashlightBrightness = 255; //seperat variable allows to change the Brightness 
+    static short flashlightBrightness = 255; //seperat variable allows to change the Brightness
 
 
     if(hal->btnHasGoneUp(BUTTON_1)) {
@@ -25,11 +25,11 @@ void OswAppFlashLight::loop() {
         }
     }
 
-    
+
     if (hal->btnHasGoneDown(BUTTON_3)) {
-        flashlightBrightness = flashlightBrightness + 50; 
-    }else if (hal->btnHasGoneDown(BUTTON_2)) {
-        flashlightBrightness = flashlightBrightness - 50; 
+        flashlightBrightness = flashlightBrightness + 50;
+    } else if (hal->btnHasGoneDown(BUTTON_2)) {
+        flashlightBrightness = flashlightBrightness - 50;
     }
 
     draw(flashlightBrightness, on);
